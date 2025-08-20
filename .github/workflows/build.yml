@@ -1,0 +1,22 @@
+name: Build Java
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Compile only Student, Calculator, and Grade
+        run: |
+          set -e
+          javac Student.java Calculator.java Grade.java
